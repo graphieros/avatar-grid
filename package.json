@@ -1,0 +1,23 @@
+{
+  "name": "avatar-grid",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.2.25",
+    "vuex": "^4.0.2",
+    "vue-router": "^4.0.12"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.0.0",
+    "typescript": "^4.4.4",
+    "vite": "^2.7.2",
+    "vue-tsc": "^0.29.8",
+    "sass": "^1.43.3",
+    "sass-loader": "^10.2.0"
+  }
+}
