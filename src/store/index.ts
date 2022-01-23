@@ -10,6 +10,7 @@ export interface State {
 
 export const store = createStore<State>({
   state: {
+    isDarkMode: false,
     maleCategoriesHd: [
       {
         name: "shapes",
@@ -807,7 +808,11 @@ export const store = createStore<State>({
       },
     ] as Category[],
   },
-  mutations: {},
+  mutations: {
+    TOGGLE_DARK_MODE(state): void {
+      state.isDarkMode = !state.isDarkMode;
+    },
+  },
 });
 
 // define your own `useStore` composition function
