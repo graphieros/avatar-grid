@@ -7,6 +7,11 @@ const routes = [
     name: "Home",
     component: Home,
   },
+  {
+    path: "/generator",
+    name: "Generator",
+    component: () => import("../views/Generator.vue"),
+  },
 ];
 
 const router = createRouter({
