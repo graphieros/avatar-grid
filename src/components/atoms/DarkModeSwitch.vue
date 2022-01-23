@@ -47,4 +47,9 @@ let isDarkMode = computed({
   position: fixed;
   top: 50px;
 }
+.header-switch {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+}
 </style>
