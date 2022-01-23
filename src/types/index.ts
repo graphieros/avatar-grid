@@ -28,3 +28,10 @@ export interface AvatarFeatures {
   props2: StringObj;
   [key: string]: StringObj;
 }
+
+export interface Category {
+  // length(length);
+  index?: number;
+  options?: string | string[];
+  name?: string;
+}
