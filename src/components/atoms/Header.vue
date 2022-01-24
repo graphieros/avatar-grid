@@ -16,6 +16,7 @@ function goHome() {
 
 <style lang="scss" scoped>
 .header {
+  z-index: 100;
   background: rgb(31, 31, 31);
   position: fixed;
   top: 0;
