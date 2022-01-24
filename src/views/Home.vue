@@ -86,6 +86,10 @@ requestAnimationFrame(faceSwap);
 
       <div class="title-inner-wrapper">
         <h1 class="title white">avatarGrid</h1>
+        <a href="https://portfolio-alp.graphieros.com" target="_blank">
+          <h5 class="blue-light3 mb5">by Alec Lloyd Probert</h5>
+        </a>
+
         <h2 class="white">The ultimate pixelart avatar generator</h2>
 
         <a href="https://github.com/graphieros/avatar-grid" target="_blank">

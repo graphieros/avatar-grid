@@ -276,7 +276,7 @@ function downloadAvatar(): void {
           bg-color="blue"
           color="white"
         >
-          <h3 class="white">SAVE</h3>
+          <h3 class="white">Download Avatar !</h3>
         </w-button>
       </div>
     </w-flex>
