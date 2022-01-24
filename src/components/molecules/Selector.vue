@@ -18,7 +18,7 @@ import Avatar from "../atoms/Avatar.vue";
 import avatarUtilsHd from "../../utils/avatarUtilsHd";
 
 let isCategoryVisible = ref(false);
-let userAvatarSequence = ref<string>("aaaaaaaaaaaa");
+let userAvatarSequence = ref<any>("aaaaaaaaaaaa");
 let isResetRequested = ref(false);
 let mockDownload = ref<HTMLAnchorElement>();
 
@@ -298,7 +298,7 @@ function downloadAvatar(): void {
       </w-flex>
       <div
         class="avatar-option-wrapper"
-        v-for="(option, i) in selectedCategory.options"
+        v-for="(option, i) in (selectedCategory.options as string[])"
         :key="`option_${i}`"
       >
         <w-button

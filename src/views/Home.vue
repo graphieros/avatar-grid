@@ -126,7 +126,8 @@ requestAnimationFrame(faceSwap);
   height: 100vh;
 }
 
-.svg-dark {
+.svg-dark,
+svg {
   background: white;
 }
 
@@ -166,6 +167,7 @@ requestAnimationFrame(faceSwap);
 .home-avatar {
   border-radius: 100%;
   padding: 20px;
+  background: white !important;
 }
 
 .dark-mode-toggle {
@@ -174,6 +176,11 @@ requestAnimationFrame(faceSwap);
 }
 
 @media screen and(max-width:600px) {
+  .dark-mode-toggle {
+    right: 0;
+    top: 20px;
+  }
+
   .title-wrapper {
     height: 400px;
   }
@@ -183,6 +190,7 @@ requestAnimationFrame(faceSwap);
   .home-avatar {
     background: none;
     padding: none;
+    margin-top: 30px;
   }
 }
 </style>

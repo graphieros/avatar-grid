@@ -23,7 +23,7 @@ let isDarkMode = computed({
 <template>
   <div :class="toggleClass">
     <label for="toggle" @click="toggleDarkMode">
-      <w-icon :class="isDarkMode ? 'mx3 grey' : 'white mx3'"
+      <w-icon :class="isDarkMode ? 'mx3 grey' : 'blue mx3'"
         >mdi mdi-weather-sunny</w-icon
       >
     </label>
@@ -35,7 +35,7 @@ let isDarkMode = computed({
       v-model="isDarkMode"
     ></w-switch>
     <label for="toggle" @click="toggleDarkMode">
-      <w-icon :class="isDarkMode ? 'mx3 white' : 'mx3 grey'"
+      <w-icon :class="isDarkMode ? 'mx3 blue' : 'mx3 grey'"
         >mdi mdi-weather-night</w-icon
       >
     </label>
