@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { store } from "../store/index";
-import { computed } from "vue";
 import Header from "../components/atoms/Header.vue";
 import Selector from "../components/molecules/Selector.vue";
+import { computed } from "vue";
+import { store } from "../store/index";
 
 const isDarkMode = computed<boolean>(() => {
   return store.state.isDarkMode;
@@ -18,8 +18,8 @@ const isDarkMode = computed<boolean>(() => {
 
 <style lang="scss" scoped>
 .generator {
-  margin-top: 60px;
   height: calc(100vh - 60px);
+  margin-top: 60px;
 }
 
 .dark {

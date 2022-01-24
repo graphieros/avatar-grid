@@ -26,15 +26,15 @@ defineProps<{
 <style lang="scss" scoped>
 .category-button {
   height: 100%;
-  width: 100%;
   outline: none;
   position: relative;
+  width: 100%;
   svg {
     margin: 0 auto;
   }
   .category-name {
-    position: absolute;
     bottom: 10px;
+    position: absolute;
   }
 }
 </style>

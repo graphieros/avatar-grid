@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import Avatar from "../components/atoms/Avatar.vue";
-import { store } from "../store";
+import DarkModeSwitch from "../components/atoms/DarkModeSwitch.vue";
 import avatarUtilsHd from "../utils/avatarUtilsHd";
-import { computed, ref } from "vue";
-import { Category } from "../types";
 import list from "../assets/names/male.json";
 import router from "../router";
-import DarkModeSwitch from "../components/atoms/DarkModeSwitch.vue";
+import { Category } from "../types";
+import { computed, ref } from "vue";
+import { store } from "../store";
 
 const shapes = computed(() => {
   return store.state.maleCategoriesHd as Category[];
