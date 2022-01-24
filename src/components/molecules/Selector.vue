@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
-import { store } from "../../store";
 import Accessories from "../shapes/Accessories.vue";
+import Avatar from "../atoms/Avatar.vue";
 import Brows from "../shapes/Brows.vue";
+import CategoryButton from "../atoms/CategoryButton.vue";
 import Ears from "../shapes/Ears.vue";
 import Eyes from "../shapes/Eyes.vue";
 import Hair from "../shapes/Hair.vue";
@@ -12,15 +12,15 @@ import Neck from "../shapes/Neck.vue";
 import Nose from "../shapes/Nose.vue";
 import Shape from "../shapes/Shape.vue";
 import Stache from "../shapes/Stache.vue";
-import CategoryButton from "../atoms/CategoryButton.vue";
-import { Category } from "../../types";
-import Avatar from "../atoms/Avatar.vue";
 import avatarUtilsHd from "../../utils/avatarUtilsHd";
+import { Category } from "../../types";
+import { computed, ref } from "vue";
+import { store } from "../../store";
 
 let isCategoryVisible = ref(false);
-let userAvatarSequence = ref<any>("aaaaaaaaaaaa");
 let isResetRequested = ref(false);
 let mockDownload = ref<HTMLAnchorElement>();
+let userAvatarSequence = ref<any>("aaaaaaaaaaaa");
 
 function closeDrawer() {
   isCategoryVisible.value = !isCategoryVisible.value;
