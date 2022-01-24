@@ -1,10 +1,15 @@
 <script setup lang="ts">
-import Header from "../components/atoms/Header.vue";
 import { store } from "../store/index";
 import { computed } from "vue";
+import Header from "../components/atoms/Header.vue";
+import Selector from "../components/molecules/Selector.vue";
 
 const isDarkMode = computed<boolean>(() => {
   return store.state.isDarkMode;
+});
+
+const categories = computed(() => {
+  return store.state.maleCategoriesHd;
 });
 </script>
 
@@ -12,6 +17,7 @@ const isDarkMode = computed<boolean>(() => {
   <Header />
   <div :class="isDarkMode ? 'generator dark' : 'generator'">
     <!-- place avatar render on the left, and choices on the right -->
+    <Selector />
     <!-- find a cool way of clicking on an option and displaying the choices on right side drawer -->
     <!-- save image as a feature -->
   </div>
