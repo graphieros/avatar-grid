@@ -18,7 +18,7 @@ import Avatar from "../atoms/Avatar.vue";
 import avatarUtilsHd from "../../utils/avatarUtilsHd";
 
 let isCategoryVisible = ref(false);
-let userAvatarSequence = ref<any>("aaaaaaaaaaaa");
+let userAvatarSequence = ref<string>("aaaaaaaaaaaa");
 let isResetRequested = ref(false);
 let mockDownload = ref<HTMLAnchorElement>();
 
@@ -346,14 +346,14 @@ function downloadAvatar(): void {
 
 <style lang="scss" scoped>
 .category-wrapper {
+  background: rgb(31, 31, 31);
   display: grid;
+  grid-gap: 10px;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(6, 1fr);
-  grid-gap: 10px;
-  padding: 10px;
   height: calc(100vh - 60px);
+  padding: 10px;
   width: 100%;
-  background: rgb(31, 31, 31);
 }
 
 svg {
@@ -361,26 +361,26 @@ svg {
 }
 
 .avatar-option-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
-  padding: 10px;
   background: rgb(31, 31, 31);
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
   overflow-y: scroll;
+  padding: 10px;
 }
 .category-name {
   grid-column: span 2;
 }
 .option-button {
-  width: 100% !important;
   background: white;
+  width: 100% !important;
 }
 
 .avatar-result {
   background: white;
-  width: 100%;
-  max-width: 400px;
   border-radius: 3px;
+  max-width: 400px;
   padding: 20px;
+  width: 100%;
 }
 </style>
