@@ -19,6 +19,8 @@ import avatarUtilsHd from "../../utils/avatarUtilsHd";
 
 let isCategoryVisible = ref(false);
 let userAvatarSequence = ref<any>("aaaaaaaaaaaa");
+let isResetRequested = ref(false);
+let mockDownload = ref<HTMLAnchorElement>();
 
 function closeDrawer() {
   isCategoryVisible.value = !isCategoryVisible.value;
@@ -69,16 +71,99 @@ function capitalize(title: string): string {
   }
   return text.charAt(0).toUpperCase() + text.substring(1);
 }
+
+function resetAvatar(): void {
+  userAvatarSequence.value = "aaaaaaaaaaaa";
+  store.commit("SET_USER_AVATAR", userAvatarSequence.value);
+  isResetRequested.value = false;
+}
+
+function triggerDownload(imgURI: string): void {
+  const fakeDownload = mockDownload.value as HTMLAnchorElement;
+  if (fakeDownload) {
+    const evt = new MouseEvent("click", {
+      view: window,
+      bubbles: false,
+      cancelable: true,
+    });
+
+    fakeDownload?.setAttribute("download", "avatar.png");
+    fakeDownload?.setAttribute("href", imgURI);
+    fakeDownload?.setAttribute("target", "_blank");
+
+    fakeDownload?.dispatchEvent(evt);
+  }
+}
+
+function downloadAvatar(): void {
+  const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+  const ctx = canvas.getContext("2d");
+  let data = "";
+  data = new XMLSerializer().serializeToString(
+    document.getElementById("avatarResult") as Node
+  );
+  const DOMURL = window.URL || window.webkitURL || window;
+
+  const img = new Image();
+  const svgBlob = new Blob([data], { type: "image/svg+xml;charset=utf-8" });
+  const url = DOMURL.createObjectURL(svgBlob);
+
+  img.onload = () => {
+    ctx?.drawImage(img, 0, 0);
+    const imgData = ctx?.getImageData(
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    ) as ImageData;
+
+    const data = imgData?.data || [];
+    for (let i = 0; i < data.length; i += 4) {
+      if (data[i + 3] < 255) {
+        data[i] = 255;
+        data[i + 1] = 255;
+        data[i + 2] = 255;
+        data[i + 3] = 255;
+      }
+    }
+
+    ctx?.putImageData(imgData, 0, 0);
+    DOMURL.revokeObjectURL(url);
+
+    const imgURI = canvas
+      .toDataURL("image/png")
+      .replace("image/png", "image/octet-stream");
+
+    triggerDownload(imgURI);
+    ctx?.clearRect(0, 0, canvas.width, canvas.height);
+  };
+
+  img.src = url;
+}
 </script>
 
 <template>
   <w-flex wrap>
-    <w-flex class="xs12 md8 align-center justify-center">
-      <Avatar
-        :sequence="(avatarUtilsHd.getAvatar(`U|${userAvatar}|rgb(0,0,0)|rgb(255,0,0)|rgb(255,0,0)`) as string)"
-        class="avatar-result"
-        size="400"
-      />
+    <w-flex wrap class="xs12 md8">
+      <w-flex class="xs12 align-center justify-center">
+        <Avatar
+          :sequence="(avatarUtilsHd.getAvatar(`U|${userAvatar}|rgb(0,0,0)|rgb(255,0,0)|rgb(255,0,0)`) as string)"
+          class="avatar-result"
+          size="400"
+          id="avatarResult"
+        />
+      </w-flex>
+      <w-flex class="xs12 my5 align-center justify-center">
+        <w-button
+          @click="isResetRequested = !isResetRequested"
+          color="blue"
+          xl
+          outline
+          round
+        >
+          <w-icon class="mr2">mdi mdi-recycle</w-icon>Reset
+        </w-button>
+      </w-flex>
     </w-flex>
 
     <!-- ADD A RESET BUTTON -->
@@ -184,7 +269,13 @@ function capitalize(title: string): string {
         >
           <Stache fill="white" />
         </CategoryButton>
-        <w-button height="50px" round bg-color="blue" color="white">
+        <w-button
+          @click="downloadAvatar()"
+          height="50px"
+          round
+          bg-color="blue"
+          color="white"
+        >
           <h3 class="white">SAVE</h3>
         </w-button>
       </div>
@@ -224,6 +315,33 @@ function capitalize(title: string): string {
       </div>
     </div>
   </w-drawer>
+
+  <!-- RESET REQUEST MODAL -->
+
+  <w-dialog v-model="isResetRequested" width="400">
+    <w-card bg-color="error">
+      <h4 align="left">
+        This will reset your avatar, your changes will be lost.
+      </h4>
+      <w-flex class="justify-space-between align-center mt5">
+        <w-button
+          color="white"
+          outline
+          round
+          xl
+          @click="isResetRequested = !isResetRequested"
+          ><w-icon class="mr1">mdi mdi-close</w-icon>CANCEL</w-button
+        >
+        <w-button bg-color="red-dark4" round xl @click="resetAvatar()"
+          ><w-icon class="mr1">mdi mdi-recycle</w-icon>RESET</w-button
+        >
+      </w-flex>
+    </w-card>
+  </w-dialog>
+
+  <!-- INVISIBLE CANVAS & ANCHOR TAG  FOR DOWNLOAD -->
+  <canvas height="400" width="400" id="canvas" style="display: none"></canvas>
+  <a ref="mockDownload" style="display: none"></a>
 </template>
 
 <style lang="scss" scoped>
@@ -262,6 +380,7 @@ svg {
   background: white;
   width: 100%;
   max-width: 400px;
-  border-radius: 100%;
+  border-radius: 3px;
+  padding: 20px;
 }
 </style>
