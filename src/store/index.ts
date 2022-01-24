@@ -10,6 +10,7 @@ export interface State {
 
 export const store = createStore<State>({
   state: {
+    userAvatar: "aaaaaaaaaaaa",
     isDarkMode: false,
     maleCategoriesHd: [
       {
@@ -252,7 +253,6 @@ export const store = createStore<State>({
           "azzzzzzzzzrz",
           "azzzzzzzzzsz",
           "azzzzzzzzztz",
-          "azzzzzzzzzuz",
         ],
         index: 10,
       },
@@ -811,6 +811,9 @@ export const store = createStore<State>({
   mutations: {
     TOGGLE_DARK_MODE(state): void {
       state.isDarkMode = !state.isDarkMode;
+    },
+    SET_USER_AVATAR(state, sequence: string): void {
+      state.userAvatar = sequence;
     },
   },
 });
