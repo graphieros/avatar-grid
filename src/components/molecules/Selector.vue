@@ -157,11 +157,23 @@ function downloadAvatar(): void {
         <w-button
           @click="isResetRequested = !isResetRequested"
           color="blue"
-          xl
           outline
           round
+          height="50px"
+          class="mx5"
         >
-          <w-icon class="mr2">mdi mdi-recycle</w-icon>Reset
+          <h3><w-icon class="mr2">mdi mdi-recycle</w-icon>Reset</h3>
+        </w-button>
+
+        <w-button
+          @click="downloadAvatar()"
+          height="50px"
+          round
+          bg-color="blue"
+          color="white"
+          class="mx5"
+        >
+          <h3 class="white">Download Avatar !</h3>
         </w-button>
       </w-flex>
     </w-flex>
@@ -269,15 +281,20 @@ function downloadAvatar(): void {
         >
           <Stache fill="white" />
         </CategoryButton>
-        <w-button
-          @click="downloadAvatar()"
-          height="50px"
-          round
-          bg-color="blue"
-          color="white"
-        >
-          <h3 class="white">Download Avatar !</h3>
-        </w-button>
+        <h5 class="mt5">
+          avatarGrid {{ new Date().getFullYear() }} <br />
+          Alec Lloyd Probert<br /><br />
+          <a href="https://portfolio-alp.graphieros.com" target="_blank">
+            <w-button class="mx2" xs round bg-color="blue" color="white"
+              >portfolio</w-button
+            >
+          </a>
+          <a href="https://github.com/graphieros" target="_blank">
+            <w-button class="mx2" xs round bg-color="blue" color="white"
+              >GitHub</w-button
+            >
+          </a>
+        </h5>
       </div>
     </w-flex>
   </w-flex>
