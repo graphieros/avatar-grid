@@ -281,7 +281,7 @@ function downloadAvatar(): void {
         >
           <Stache fill="white" />
         </CategoryButton>
-        <h5 class="mt5">
+        <h5 class="mt5 grey-light3">
           avatarGrid {{ new Date().getFullYear() }} <br />
           Alec Lloyd Probert<br /><br />
           <a href="https://portfolio-alp.graphieros.com" target="_blank">
